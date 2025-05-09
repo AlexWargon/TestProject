@@ -68,7 +68,7 @@ MonoBehaviour:
     - rid: 2159377229368524865
       type: {class: Damage, ns: Wargon.TestGame, asm: Game}
       data:
-        Value: 20
+        Value: 25
     - rid: 2159377229368524866
       type: {class: Speed, ns: Wargon.TestGame, asm: Game}
       data:
@@ -5035,8 +5035,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.05
+      scalar: 2
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5204,7 +5204,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5257,7 +5257,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:

@@ -19,7 +19,7 @@ namespace Wargon.TestGame
 
         public override void Update()
         {
-            entities.Without<Inactive>().Each((Entity e, AnimatorRef animRef, EnemyTag enemyTag) =>
+            entities.Without<Inactive, DamageEvent>().Each((Entity e, AnimatorRef animRef, EnemyTag enemyTag) =>
             {
                 if (e.Has<DeadState>())
                     animRef.Value.Play(death);

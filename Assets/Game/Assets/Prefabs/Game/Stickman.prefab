@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 212005046165670256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5311956, y: 0, z: -40.153416}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -98,6 +98,7 @@ MonoBehaviour:
   - rid: 2159377253703090608
   - rid: 2159377257114370461
   - rid: 2159377257114370462
+  - rid: 2159377274135642560
   runTime: 0
   destroyObject: 0
   destroyComponent: 0
@@ -136,7 +137,7 @@ MonoBehaviour:
     - rid: 2159377248356139075
       type: {class: AgroDistance, ns: Wargon.TestGame, asm: Game}
       data:
-        Value: 16
+        Value: 14
     - rid: 2159377248356139080
       type: {class: Direction, ns: Wargon.TestGame, asm: Game}
       data:
@@ -156,7 +157,7 @@ MonoBehaviour:
     - rid: 2159377253703090608
       type: {class: ChaseSpeed, ns: Wargon.TestGame, asm: Game}
       data:
-        Value: 9
+        Value: 6
     - rid: 2159377257114370461
       type: {class: DamageEffect, ns: Wargon.TestGame, asm: Game}
       data:
@@ -168,6 +169,10 @@ MonoBehaviour:
       type: {class: Renderer, ns: Wargon.TestGame, asm: Game}
       data:
         Value: {fileID: 4963655295867881390}
+    - rid: 2159377274135642560
+      type: {class: HealthBarOffset, ns: Wargon.TestGame, asm: Game}
+      data:
+        Value: {x: 0, y: 2.08, z: 0}
 --- !u!114 &3479182580034299272
 MonoBehaviour:
   m_ObjectHideFlags: 0

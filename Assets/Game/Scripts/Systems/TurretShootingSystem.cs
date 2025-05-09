@@ -17,22 +17,14 @@ namespace Wargon.TestGame
                 turret.FireTime -= time.DeltaTime;
                 if (turret.FireTime <= 0f)
                 {
-                    var projectile = objectPool.Spawn(turret.Projectile, turret.FirePoint.position,
+                    objectPool.Spawn(turret.Projectile, turret.FirePoint.position,
                         turret.FirePoint.rotation);
-                    ref var projectileE = ref entityViewMap.GetEntity(projectile.GetInstanceID());
-                    projectileE.Remove<Inactive>();
-
-                    var muzzle = objectPool.Spawn(turret.MuzzleFlash, turret.FirePoint.position,
+                    objectPool.Spawn(turret.MuzzleFlash, turret.FirePoint.position,
                         turret.FirePoint.rotation);
 
                     turret.FireTime = turret.FireCooldown;
-                    var originalScale = transformRef.Value.localScale;
-                    var scaledUp = originalScale * 1.3f;
 
-                    transformRef.Value.DOScale(scaledUp, 0.1f).OnComplete(() =>
-                    {
-                        transformRef.Value.localScale = originalScale;
-                    });
+                    transformRef.Value.DOPunchPosition(transformRef.Value.up * -0.1f, turret.FireTime);
                 }
             });
         }

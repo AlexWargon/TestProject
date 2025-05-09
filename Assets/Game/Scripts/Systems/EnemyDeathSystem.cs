@@ -6,6 +6,7 @@ namespace Wargon.TestGame
     public partial class EnemyDeathSystem : UpdateSystem
     {
         private EntityViewMap entityViewMap;
+        private GameData gameData;
         private ObjectPool objectPool;
 
         public override void Update()
@@ -16,7 +17,8 @@ namespace Wargon.TestGame
                 DeathEffect deathEffect,
                 EnemyTag tag,
                 TransformRef transformRef,
-                Speed speed) =>
+                Speed speed,
+                HealthBarViewRef healthBarViewRef) =>
             {
                 e.Remove<IdleState>();
                 e.Remove<ChaseState>();
@@ -24,6 +26,7 @@ namespace Wargon.TestGame
                 e.Add<DeadState>();
                 e.Remove<DeathEvent>();
                 speed.Value = 0;
+                objectPool.Release(healthBarViewRef.Value, gameData.HealthBarViewPrefab.GetInstanceID());
                 world.CreateEntity().Add(new EntityActionOnDelay
                 {
                     Delay = 0.2f,

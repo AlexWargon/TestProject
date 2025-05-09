@@ -29,7 +29,8 @@ namespace Wargon.TestGame
                             var x = Random.Range(spawnRect.x, spawnRect.z);
                             var z = Random.Range(spawnRect.y, spawnRect.w);
                             var spawnPosition = new Vector3(x, 0, z);
-                            var enemyView = objectPool.Spawn(spawner.Prefab, spawnPosition, Quaternion.identity);
+                            var rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                            var enemyView = objectPool.Spawn(spawner.Prefab, spawnPosition, rotation);
                             ref var e = ref entityViewMap.GetEntity(enemyView.GetInstanceID());
                             ref var health = ref e.Get<Health>();
                             health.Value = health.MaxValue;

@@ -21,6 +21,16 @@ namespace Wargon.TestGame
             return ref Entity.Null;
         }
 
+        public bool TryGetEntity(int instanceID, out Entity entity)
+        {
+            if (viewInstanceToEntity.TryGetValue(instanceID, out var value))
+            {
+                entity = world.GetEntity(value);
+                return true;
+            }
+            entity = Entity.Null;
+            return false;
+        }
         public void AddEntity(int instanceID, Entity entity)
         {
             viewInstanceToEntity[instanceID] = entity.id;

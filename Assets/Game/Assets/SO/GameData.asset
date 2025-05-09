@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   WinDistance: 300
+  HealthBarViewPrefab: {fileID: 826240304271828544, guid: b6cb7558b12da704dafdb0b28abc15b0,
+    type: 3}

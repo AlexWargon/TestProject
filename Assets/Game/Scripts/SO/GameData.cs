@@ -6,5 +6,6 @@ namespace Wargon.TestGame
     public class GameData : ScriptableObject
     {
         public float WinDistance;
+        public HealthBarView HealthBarViewPrefab;
     }
 }

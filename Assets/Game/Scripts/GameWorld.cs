@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Wargon.ezs;
 using Wargon.ezs.Unity;
 
@@ -34,6 +33,8 @@ namespace Wargon.TestGame
                 .Add(new TurretShootingSystem())
                 .Add(new MoveProjectileSystem())
                 .Add(new RegisterCollisionEmittersSystem())
+                .Add(new RegisterHealthBarViewSystem())
+                .Add(new HealthBarUpdatePositionSystem())
                 .Add(new DistanceFromEnemyToPlayerSystem())
                 .Add(new IdleInitSystem())
                 .Add(new IdleWanderSystem())
@@ -43,6 +44,7 @@ namespace Wargon.TestGame
                 .Add(new ProjectileOnCollisionSystem())
                 .Add(new DamageSystem())
                 .Add(new ApplyDamageEffectSystem())
+                .Add(new StunEnemyOnDamageSystem())
                 .Add(new EnemyAnimationSystem())
                 .Add(new EnemyDeathSystem())
                 .Add(new ActionOnDelaySystem())
@@ -88,6 +90,27 @@ namespace Wargon.TestGame
         private void OnDestroy()
         {
             world.Destroy();
+        }
+    }
+
+    public partial class StunEnemyOnDamageSystem : UpdateSystem
+    {
+        private int damageAnim;
+        protected override void OnCreate()
+        {
+            damageAnim = Animator.StringToHash("Death");
+        }
+
+        public override void Update()
+        {
+            entities.Each((RenderDamageEffectTime renderDamageEffectTime, Speed speed, EnemyTag tag) =>
+            {
+                speed.Value = 0;
+            });
+            entities.Each((DamageEvent damageEvnt, EnemyTag tag, AnimatorRef animatorRef) =>
+            {
+                animatorRef.Value.Play(damageAnim);
+            });
         }
     }
 }

@@ -91,9 +91,11 @@ namespace Wargon.TestGame
             var pool = GetPool(prefab);
             var obj = pool.Get();
             obj.transform.SetPositionAndRotation(position, rotation);
-            ref var e = ref entityViewMap.GetEntity(obj.gameObject.GetInstanceID());
-            e.Add<PooledEvent>();
-            e.Remove<Inactive>();
+            if (entityViewMap.TryGetEntity(obj.gameObject.GetInstanceID(), out var e))
+            {
+                e.Add<PooledEvent>();
+                e.Remove<Inactive>();
+            }
             return obj;
         }
 
@@ -102,9 +104,11 @@ namespace Wargon.TestGame
             var pool = GetPool(prefab);
             var obj = pool.Get();
             obj.transform.SetPositionAndRotation(position, rotation);
-            ref var e = ref entityViewMap.GetEntity(obj.GetInstanceID());
-            e.Add<PooledEvent>();
-            e.Remove<Inactive>();
+            if (entityViewMap.TryGetEntity(obj.GetInstanceID(), out var e))
+            {
+                e.Add<PooledEvent>();
+                e.Remove<Inactive>();
+            }
             return obj;
         }
 
