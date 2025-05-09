@@ -16,7 +16,6 @@ namespace Wargon.TestGame
                 DeathEvent deathEvent,
                 DeathEffect deathEffect,
                 EnemyTag tag,
-                TransformRef transformRef,
                 Speed speed,
                 HealthBarViewRef healthBarViewRef) =>
             {
@@ -29,7 +28,7 @@ namespace Wargon.TestGame
                 objectPool.Release(healthBarViewRef.Value, gameData.HealthBarViewPrefab.GetInstanceID());
                 world.CreateEntity().Add(new EntityActionOnDelay
                 {
-                    Delay = 0.2f,
+                    Delay = 0.25f,
                     Action = PlayDeathEffect,
                     Target = e
                 });
@@ -40,7 +39,7 @@ namespace Wargon.TestGame
         {
             e.Add<ClearViewEvent>();
             var transform = e.Get<TransformRef>().Value;
-            var effect = objectPool.Spawn(e.Get<DeathEffect>().ParticleSystem, transform.position, Quaternion.identity);
+            var effect = objectPool.Spawn(e.Get<DeathEffect>().ParticleSystem, transform.position + Vector3.up * 0.2f, Quaternion.identity);
             ref var effectE = ref entityViewMap.GetEntity(effect.gameObject.GetInstanceID());
             ref var lifeTime = ref effectE.Get<LifeTime>();
             lifeTime.CurrentValue = lifeTime.Value;

@@ -6,8 +6,8 @@ namespace Wargon.TestGame
     public struct IdleWanderData
     {
         public Vector3 StartPosition;
+        public Vector3 CurrentTarget;
         public float MaxDistance;
-        public float Timer;
-        public float DirectionSign;
+        public float LerpFactor;
     }
 }

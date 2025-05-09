@@ -12,20 +12,22 @@ namespace Wargon.TestGame
             entities.Each((IdleWanderData wander, TransformRef tr, Direction dir, Speed speed, IdleState state) =>
             {
                 var pos = tr.Value.position;
-                var dist = Vector3.Distance(pos, wander.StartPosition);
+                var toTarget = wander.CurrentTarget - pos;
+                toTarget.y = 0f;
 
-                if (dist >= wander.MaxDistance)
-                    wander.DirectionSign *= -1f;
+                if (toTarget.sqrMagnitude < 0.2f)
+                {
+                    var offset = Random.insideUnitCircle * wander.MaxDistance;
+                    wander.CurrentTarget = wander.StartPosition + new Vector3(offset.x, 0f, offset.y);
+                    toTarget = wander.CurrentTarget - pos;
+                    toTarget.y = 0f;
+                }
 
-                var moveDir = tr.Value.forward * wander.DirectionSign;
-                moveDir.y = 0f;
-                moveDir.Normalize();
-
+                var moveDir = toTarget.normalized;
                 dir.Value = moveDir;
+                speed.Value = .5f;
 
-                tr.Value.forward = Vector3.Lerp(tr.Value.forward, moveDir, 0.5f);
-
-                speed.Value = 1f;
+                tr.Value.forward = Vector3.Lerp(tr.Value.forward, moveDir, wander.LerpFactor);
             });
         }
     }

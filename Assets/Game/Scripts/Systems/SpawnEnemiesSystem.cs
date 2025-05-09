@@ -12,7 +12,7 @@ namespace Wargon.TestGame
 
         public override void Update()
         {
-            entities.Each((EnemySpawner spawner) =>
+            entities.Without<Inactive>().Each((EnemySpawner spawner) =>
             {
                 spawner.TimeBetweenSpawnsCounter -= timeService.DeltaTime;
                 if (spawner.TimeBetweenSpawnsCounter <= 0)

@@ -1,4 +1,5 @@
-﻿using Wargon.ezs;
+﻿using UnityEngine;
+using Wargon.ezs;
 
 namespace Wargon.TestGame
 {
@@ -14,6 +15,16 @@ namespace Wargon.TestGame
                 if (action.Delay <= 0)
                 {
                     action.Action(action.Target);
+                    e.Destroy();
+                }
+            });
+            
+            entities.Each((Entity e, ActionOnDelay action) =>
+            {
+                action.Delay -= time.DeltaTime;
+                if (action.Delay <= 0)
+                {
+                    action.Action();
                     e.Destroy();
                 }
             });

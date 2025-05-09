@@ -12,8 +12,9 @@ namespace Wargon.TestGame
                 e.Get<IdleWanderData>() = new IdleWanderData
                 {
                     StartPosition = tr.Value.position,
-                    MaxDistance = Random.Range(2f, 3f),
-                    DirectionSign = 1f
+                    CurrentTarget = tr.Value.position,
+                    MaxDistance = Random.Range(2, 3),
+                    LerpFactor = 0.1f
                 };
                 e.Remove<DeadState>();
                 e.Add<IdleState>();

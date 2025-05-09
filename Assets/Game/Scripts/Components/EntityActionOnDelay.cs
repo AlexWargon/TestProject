@@ -9,4 +9,10 @@ namespace Wargon.TestGame
         public Entity Target;
         public Action<Entity> Action;
     }
+
+    public struct ActionOnDelay
+    {
+        public float Delay;
+        public Action Action;
+    }
 }
